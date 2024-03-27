@@ -4,6 +4,8 @@ import "./globals.css";
 import '@radix-ui/themes/styles.css';
 import { Theme } from "@radix-ui/themes";
 
+import Nav from "./components/nav";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,8 +22,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Theme>
-          <h1 className="text-center text-3xl">View Pokemon!</h1>
-          {children}
+          <Nav />
+          <div className="container mx-auto px-4">
+            {children}
+          </div>  
         </Theme>
       </body>
     </html>

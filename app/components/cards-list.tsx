@@ -14,7 +14,7 @@ export default function CardResultsList({ cards }: CardResultsListProps) {
 
     return (
         <>
-            <ul className="grid grid-cols-3 gap-3">
+            <ul className="grid grid-cols-1 gap-3 md:grid-cols-3 sm:grid-cols-2">
                 {cards.slice(start, start + max).map(card => {
                     return (
                         <li key={card.id}>

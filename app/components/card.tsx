@@ -15,13 +15,13 @@ export default function Card({ item }: any) {
             <div className={`${classes[type]} ${classes.top50} absolute bottom-0 left-0 right-0`}></div>
             <div className="z-10 w-full p-4">
                 <div className="flex justify-between">
-                    <Badge color="gray" variant="soft">{pokedexNum}</Badge>
-                    <Badge color="gray" variant="soft">{type}</Badge>
+                    <Badge color="gray" variant="soft" highContrast>{pokedexNum}</Badge>
+                    <Badge color="gray" variant="soft" highContrast>{type}</Badge>
                 </div>
                 <div className="flex flex-col justify-center items-center">
                     <Image src={sprites.other['official-artwork'].front_default} alt="pokemon" width={100} height={100} priority />
                     <h1 className="text-white text-lg capitalize">{name}</h1>
-                    <Link className="text-white underline" href={`/${id}`}>See more</Link>
+                    <Link className="text-white underline" href={{ pathname: `/${id}`, query: item }}>See more</Link>
                 </div>
                 
             </div>

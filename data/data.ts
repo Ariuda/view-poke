@@ -10,9 +10,11 @@ export interface PokeApiSingleResult {
     url: string;
 }
 
-export async function getPokemon() {
-    const data = await fetch('https://pokeapi.co/api/v2/pokemon?limit=9').then(res => res.json());    
-    return data.results;
+export async function getPokemon(start: number, end: number) {
+    //await new Promise((resolve) => setTimeout(resolve, 10000000));
+    const data = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${start}limit=${end}`).then(res => res.json());
+    //console.log(data);    
+    return data;
 }
 
 export async function getPokemonById(name: string) {
