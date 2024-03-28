@@ -21,3 +21,9 @@ export async function getPokemonById(name: string) {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`).then(res => res.json());
     return res;
 }
+
+export async function getSpeciesDetail(name: string) {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}`).then(res => res.json());
+    return res;
+}

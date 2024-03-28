@@ -1,14 +1,14 @@
 'use client';
 
 import { useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { redirect, usePathname, useRouter, useSearchParams } from "next/navigation";
 import { TextField } from "@radix-ui/themes";
 
 export default function SearchBar() {
     const searchParams = useSearchParams();
-    const pathname = usePathname();
-    const params = new URLSearchParams(searchParams);
-    const { replace } = useRouter();
+    //const pathname = usePathname();
+    //const params = new URLSearchParams(searchParams);
+    const { push } = useRouter();
 
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -17,14 +17,19 @@ export default function SearchBar() {
     }
     function handleSubmit(e: any) {
         e.preventDefault();
-        params.set('query', searchTerm);
-        replace(`${pathname}?${params.toString()}`);
+        setSearchTerm('');
+        push(`/${searchTerm}`);
     }
 
     return (
-        <div>
+        <div className="w-full sm:w-4/12">
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Search pokemon..." onChange={handleChange} />
+                
+                <TextField.Root placeholder="Search pokemon..." onChange={handleChange} value={searchTerm}>
+                    <TextField.Slot>
+                        
+                    </TextField.Slot>
+                </TextField.Root>
             </form>
             
         </div>

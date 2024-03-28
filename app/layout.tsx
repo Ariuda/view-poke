@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import '@radix-ui/themes/styles.css';
 import { Theme } from "@radix-ui/themes";
 
 import Nav from "./components/nav";
-
-const inter = Inter({ subsets: ["latin"] });
+import GoBack from "./components/go-back";
 
 export const metadata: Metadata = {
   title: "View Pokemon",
@@ -20,12 +20,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Theme>
           <Nav />
-          <div className="container mx-auto px-4">
+          <Suspense>
+            <GoBack />
+          </Suspense>
+          <main className="container mx-auto my-5 sm:mt-16 md:mt-20 px-12">
             {children}
-          </div>  
+          </main>  
         </Theme>
       </body>
     </html>

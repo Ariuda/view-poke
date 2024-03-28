@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { Table, Badge } from "@radix-ui/themes";
-import { Fragment } from "react";
+import { Fragment, Suspense } from "react";
 
 import { getPokemonById } from "@/data/data";
 import Slideshow from "../components/slideshow";
-
+import Details from '../components/details';
 
 export default async function ViewPokemonById({ params }) {
     const urlId = params.id;
@@ -31,26 +31,39 @@ export default async function ViewPokemonById({ params }) {
 
     return (
         <div className="container px-4">
-            <div className="flex flex-col items-center">
-                <div className="flex justify-between items-center">
-                    <Badge color="gray" variant="soft" highContrast>{type}</Badge>
-                    <h1 className="text-3xl capitalize m-8">{name}</h1>
-                    <Badge color="gray" variant="soft" highContrast>{pokedexNum}</Badge>
+            <div className="flex justify-between items-center mb-8">
+                <Badge color="gray" variant="soft" size="3" highContrast>{type}</Badge>
+                <h1 className="text-3xl capitalize mx-8">{name}</h1>
+                <Badge color="gray" variant="soft" size="3" highContrast>{pokedexNum}</Badge>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+                <div className="w-full">
+                    <div className="relative w-5/6 h-5/6">
+                        <Image src={sprites.other['official-artwork'].front_default} alt="pokemon" fill sizes="100%" priority />
+                    </div>
+                    <Suspense fallback={<p>loading...</p>}>
+                        <Details name={name} />
+                    </Suspense>
                 </div>
-                <Image src={sprites.other['official-artwork'].front_default} alt="pokemon" width={200} height={200} priority />
-                <Slideshow items={allMoves} />
-                <Table.Root>
-                    <Table.Header>
-                        <Table.Row>
-                        <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Effort</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Base Stat</Table.ColumnHeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {allStats}
-                    </Table.Body>
+                
+                <div>
+                <h2 className="text-lg my-8">Moves</h2>
+                    <Slideshow items={allMoves} />
+
+                <h2 className="text-lg my-8">Stats</h2>
+                    <Table.Root>
+                        <Table.Header>
+                            <Table.Row>
+                            <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
+                            <Table.ColumnHeaderCell>Effort</Table.ColumnHeaderCell>
+                            <Table.ColumnHeaderCell>Base Stat</Table.ColumnHeaderCell>
+                            </Table.Row>
+                        </Table.Header>
+                        <Table.Body>
+                            {allStats}
+                        </Table.Body>
                     </Table.Root>
+                </div>
             </div>
         </div>
     )
