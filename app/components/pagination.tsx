@@ -27,9 +27,7 @@ export default function Pagination({ totalResults, maxPerPage }: PaginationProps
             const nextPage = page + goTo;
             setPage(nextPage)
             params.set('go', nextPage.toString());
-        } else {
-            params.delete('go');
-        }
+        } 
         replace(`${pathname}?${params.toString()}`);
     }
 

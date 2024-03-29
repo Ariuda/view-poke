@@ -1,13 +1,13 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function GoBack() {
     const [renderLink, setRenderLink] = useState(false);
     const pathname = usePathname();
-    const router = useRouter()
-
+    const searchParams = useSearchParams()
+    const router = useRouter();
     
     useEffect(() => {
         const splitPathname = pathname.split('/');
@@ -16,7 +16,9 @@ export default function GoBack() {
         } else {
             setRenderLink(true);
         }
+        
+        
     }, [pathname]);
 
-    return renderLink && <div className="m-2 hover:underline" onClick={() => router.push('/')}><span>&lt; Go back</span></div>
+    return renderLink && <div className="m-2 hover:underline" onClick={() => router.back()}><span>&lt; Go back</span></div>
 }

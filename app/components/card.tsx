@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Badge, Card, Avatar, Flex, Text } from "@radix-ui/themes";
-
-import classes from './card.module.css';
+import { Badge, Card, Flex, Text } from "@radix-ui/themes";
 
 export default function CardComponent({ item }: any) {
     const { sprites, name, id, types } = item;
