@@ -1,12 +1,13 @@
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+
+import classes from './go-back.module.css';
 
 export default function GoBack() {
     const [renderLink, setRenderLink] = useState(false);
     const pathname = usePathname();
-    const searchParams = useSearchParams()
     const router = useRouter();
     
     useEffect(() => {
@@ -16,9 +17,7 @@ export default function GoBack() {
         } else {
             setRenderLink(true);
         }
-        
-        
     }, [pathname]);
 
-    return renderLink && <div className="m-2 hover:underline" onClick={() => router.back()}><span>&lt; Go back</span></div>
+    return renderLink && <div className="m-2" onClick={() => router.back()}><span className={classes.link}>&lt; Go back</span></div>
 }

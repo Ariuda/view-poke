@@ -7,19 +7,23 @@ import Slideshow from "../components/slideshow";
 import Details from '../components/details';
 import LoadingSpinner from "../components/loading-spinner";
 import classes from './page.module.css';
+import { notFound } from "next/navigation";
 
-export default async function ViewPokemonById({ params }) {
+export default async function ViewPokemonById({ params }: any) {
     const urlId = params.id;
     const pokemon = await getPokemonById(urlId);
+    if(!pokemon) {
+        notFound();
+    }
     const { sprites, name, id, types, moves, stats } = pokemon;
     const pokedexNum = id.toString().length > 1 ? (id.toString().length === 2 ? `#0${id}` : `#${id}`) : `#00${id}`;
     const type = types[0].type.name;
 
-    const allMoves = moves.map(m => {
+    const allMoves = moves.map((m: any) => {
         return m.move.name;
     });
 
-    const allStats = stats.map(s => {
+    const allStats = stats.map((s: any) => {
         return (
                     <Fragment key={s.stat.name}>
                         <Table.Row align="center">
@@ -32,9 +36,9 @@ export default async function ViewPokemonById({ params }) {
     });
 
     return (
-        <div className="container px-4">
-            <h1 className="text-3xl text-left capitalize mb-6">{name}</h1>
-            <div className="grid grid-cols-2 gap-16">
+        <div className="container sm:px-4">
+            <h1 className="text-3xl text-center sm:text-left capitalize mb-6">{name}</h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-16">
                 <div className="w-full">
                     <div className="relative min-h-80 flex justify-center mb-8">
                         <Image src={sprites?.other?.['official-artwork']?.front_default} alt="pokemon" height={384} width={384} priority />

@@ -18,7 +18,7 @@ export default function Slideshow({ items }: any) {
     return (
         <div className="flex items-center justify-between w-full">
             <Button variant="outline" color="gray" highContrast disabled={startIndex === 0} onClick={() => setStartIndex(startIndex - 9)}>&lt;</Button>
-            <ul className="flex mx-4">
+            <ul className="flex mx-4 flex-wrap justify-center items-center min-h-24">
                 {renderedItems}
             </ul>
             <Button variant="outline" color="gray" highContrast disabled={startIndex >= Math.floor(items.length / maxItems)} onClick={() => setStartIndex(startIndex + 9)}>&gt;</Button>

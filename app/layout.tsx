@@ -26,7 +26,7 @@ export default function RootLayout({
           <Suspense>
             <GoBack />
           </Suspense>
-          <main className="container mx-auto my-5 sm:mt-16 px-12">
+          <main className="container mx-auto my-5 sm:mt-16 px-5 sm:px-12">
             {children}
           </main>  
         </Theme>
