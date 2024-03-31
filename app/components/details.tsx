@@ -1,5 +1,4 @@
 import { getSpeciesDetail } from "@/data/data";
-import { notFound } from "next/navigation";
 
 interface ViewDetailProps {
     name: string;
@@ -9,7 +8,7 @@ interface ViewDetailProps {
 export default async function ViewDetail({ name, type }: ViewDetailProps) {
     const details = await getSpeciesDetail(name);
     if(!details) {
-        notFound();
+        return null;
     }
     const { base_happiness, capture_rate, color, growth_rate, habitat } = details;
 

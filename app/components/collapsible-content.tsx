@@ -8,7 +8,7 @@ interface CollapsibleContentProps {
 }
 
 export default function CollapsibleContent({ label, children }: CollapsibleContentProps) {
-    const [showContent, setShowContent] = useState(false);
+    const [showContent, setShowContent] = useState<boolean>(false);
 
     return (
         <div>

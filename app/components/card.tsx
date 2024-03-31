@@ -2,9 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge, Card, Flex, Text } from "@radix-ui/themes";
 
-export default function CardComponent({ item }: any) {
-    const { sprites, name, id, types } = item;
+import fallbackImg from '@/assets/fallback.png';
+import { PokeApiByIdResult } from '@/data/data';
 
+export default function CardComponent(props: PokeApiByIdResult) {
+
+    const { sprites, name, id, types } = props;
+
+    const img = sprites.other['official-artwork'].front_default || fallbackImg;
     const pokedexNum = id.toString().length > 1 ? (id.toString().length === 2 ? `#0${id}` : `#${id}`) : `#00${id}`;
     const type = types[0].type.name;
 
@@ -15,7 +20,7 @@ export default function CardComponent({ item }: any) {
                     <Badge color="gray" variant="soft" highContrast>{pokedexNum}</Badge>
                     <Badge color="gray" variant="soft" highContrast>{type}</Badge>
                 </Flex>
-                <Image src={sprites.other['official-artwork'].front_default} alt="pokemon" width={100} height={100} priority />
+                <Image src={img} alt={`${name} image`} width={100} height={100} priority />
                 <Text as="p" size="6" weight="bold">
                     {name}
                 </Text>

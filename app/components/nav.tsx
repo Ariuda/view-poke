@@ -1,5 +1,3 @@
-
-
 import SearchBar from "./search-bar"
 
 export default function Nav() {

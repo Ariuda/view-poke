@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import classes from './go-back.module.css';
 
 export default function GoBack() {
-    const [renderLink, setRenderLink] = useState(false);
+    const [renderLink, setRenderLink] = useState<boolean>(false);
     const pathname = usePathname();
     const router = useRouter();
     

@@ -3,11 +3,15 @@
 import { Badge, Button } from "@radix-ui/themes";
 import { useState } from "react";
 
-export default function Slideshow({ items }: any) {
-    const [startIndex, setStartIndex] = useState(0)
-    const maxItems = 3;
+interface SlideshowProps {
+    items: string[];
+}
 
-    const renderedItems = items.slice(startIndex, startIndex + maxItems).map((item: any) => {
+export default function Slideshow({ items }: SlideshowProps) {
+    const [startIndex, setStartIndex] = useState(0)
+    const maxItems = 4;
+
+    const renderedItems = items.slice(startIndex, startIndex + maxItems).map(item => {
         return <li key={item} className="m-2">
                     <Badge color="gray" variant="soft" size="3" highContrast>
                         {item}
@@ -17,11 +21,11 @@ export default function Slideshow({ items }: any) {
 
     return (
         <div className="flex items-center justify-between w-full">
-            <Button variant="outline" color="gray" highContrast disabled={startIndex === 0} onClick={() => setStartIndex(startIndex - 9)}>&lt;</Button>
+            <Button variant="outline" color="gray" highContrast disabled={startIndex === 0} onClick={() => setStartIndex(startIndex - maxItems)}>&lt;</Button>
             <ul className="flex mx-4 flex-wrap justify-center items-center min-h-24">
                 {renderedItems}
             </ul>
-            <Button variant="outline" color="gray" highContrast disabled={startIndex >= Math.floor(items.length / maxItems)} onClick={() => setStartIndex(startIndex + 9)}>&gt;</Button>
+            <Button variant="outline" color="gray" highContrast disabled={(startIndex + maxItems) >= items.length} onClick={() => setStartIndex(startIndex + maxItems)}>&gt;</Button>
         </div>
     )
 }
