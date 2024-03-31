@@ -8,18 +8,17 @@ import { notFound } from 'next/navigation';
 
 interface PokemonProps {
   start: number;
-  end: number; 
   maxItemsPerPage: number;
 }
 
 interface HomeProps {
   searchParams?: { 
-    go?: string 
+    page?: string 
   }
 }
 
-async function Pokemon({ start, end, maxItemsPerPage }: PokemonProps) {
-    const pokemon = await getPokemon(start, end);
+async function Pokemon({ start, maxItemsPerPage }: PokemonProps) {
+    const pokemon = await getPokemon(start, maxItemsPerPage);
     if(!pokemon.results?.length) {
       notFound();
     }
@@ -30,19 +29,18 @@ async function Pokemon({ start, end, maxItemsPerPage }: PokemonProps) {
         <Pagination totalResults={pokemon.count} maxPerPage={maxItemsPerPage} />
       </>
     )
-    
 }
 
 export default function Home({ searchParams }: HomeProps) { 
-  let page = 0;
+  let page = 1;
   let maxItemsPerPage = 9;
 
-  !searchParams?.go ? page = 0 : page = +searchParams.go;
+  !searchParams?.page ? page = 1 : page = +searchParams.page;
 
   return (
     <section className="px-7 sm:p-0">
       <Suspense key={page + maxItemsPerPage} fallback={<CardsLoadingSkeleton cardsNumber={maxItemsPerPage} />}>
-        <Pokemon start={page * maxItemsPerPage} end={page * maxItemsPerPage + maxItemsPerPage} maxItemsPerPage={maxItemsPerPage} />
+        <Pokemon start={(page - 1) * maxItemsPerPage} maxItemsPerPage={maxItemsPerPage} />
       </Suspense>
     </section>
   );

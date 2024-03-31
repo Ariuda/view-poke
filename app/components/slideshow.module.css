@@ -1,0 +1,21 @@
+.slideshow .item {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.slideshow .item {
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .slideshow .item {
+    animation: fadeIn 1s normal;
+  }

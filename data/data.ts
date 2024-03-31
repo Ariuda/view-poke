@@ -64,7 +64,7 @@ export interface PokeApiBySpeciesResult {
 
 export async function getPokemon(start: number, end: number): Promise<PokeApiResult> {
     //await new Promise((resolve) => setTimeout(resolve, 10000000));
-    const data = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${start}limit=${end}`).then(res => res.json()).catch(err => console.log(err));   
+    const data = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${start}&limit=${end}`).then(res => res.json()).catch(err => console.log(err));   
     return data;
 }
 

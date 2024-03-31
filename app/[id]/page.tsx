@@ -23,7 +23,7 @@ export default async function ViewPokemonById({ params }: ViewPokemonByIdProps) 
     if(!pokemon) {
         notFound();
     }
-    const { sprites, name, id, types, moves, stats } = pokemon;
+    const { sprites, name, id, types, moves, stats, species, height, weight } = pokemon;
     const pokedexNum = id.toString().length > 1 ? (id.toString().length === 2 ? `#0${id}` : `#${id}`) : `#00${id}`;
     const type = types[0].type.name;
     const img = sprites?.other?.['official-artwork']?.front_default || fallbackImg;
@@ -54,12 +54,25 @@ export default async function ViewPokemonById({ params }: ViewPokemonByIdProps) 
                 <div>
                     <div className="flex justify-between">
                         <div>
-                            <h2 className="text-lg my-2 font-medium">Number</h2>
-                            <p>{pokedexNum}</p>
+                            <div>
+                                <h2 className="text-lg my-2 font-medium">Number</h2>
+                                <p>{pokedexNum}</p>
+                            </div>
+                            <div className="mt-8">
+                                <h2 className="text-lg my-2 font-medium">Height</h2>
+                                <p>{height * 10} cm</p>
+                            </div>
+                            
                         </div>
                         <div>
-                            <h2 className="text-lg my-2 font-medium">Type</h2>
-                            <p className={`capitalize p-2 rounded text-white ${classes[type]}`}>{type}</p>
+                            <div>
+                                <h2 className="text-lg my-2 font-medium">Type</h2>
+                                <p className={`capitalize p-2 rounded text-white text-center ${classes[type]}`}>{type}</p>
+                            </div>
+                            <div className="mt-8 ">
+                                <h2 className="text-lg my-2 font-medium">Weight</h2>
+                                <p>{weight / 10} kg</p>
+                            </div>
                         </div>
                     </div>
                     <div className="mt-8">
