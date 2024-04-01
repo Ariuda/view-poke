@@ -20,7 +20,7 @@ export default function CardComponent(props: PokeApiByIdResult) {
                     {pokedexNum && <Badge color="gray" variant="soft" highContrast>{pokedexNum}</Badge>}
                     {type && <Badge color="gray" variant="soft" highContrast>{type}</Badge>}
                 </Flex>
-                <Image src={img} alt={`${name && name} image`} style={{width: "auto"}} width={100} height={100} priority />
+                <Image src={img} alt={`${name && name} image`} style={{objectFit: "contain"}} width={100} height={100} priority />
                 {name && <Text as="p" size="6" weight="bold" style={{ textTransform: 'capitalize' }}>
                     {name}
                 </Text>}

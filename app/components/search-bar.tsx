@@ -10,7 +10,7 @@ export default function SearchBar() {
     const [searchTerm, setSearchTerm] = useState<string>('');
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-        setSearchTerm(event.target.value);
+        setSearchTerm((event.target.value).toLowerCase());
     }
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
