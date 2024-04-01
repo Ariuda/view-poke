@@ -18,13 +18,13 @@ export default async function ViewDetail({ name }: ViewDetailProps) {
     return (
         <div>
             <div className="flex justify-between mt-8">
-                {color.name && <div>
+                {color?.name && <div>
                     <h2 className="text-lg my-2 font-medium">Color</h2>
-                    <p className="capitalize">{color.name}</p>
+                    <p className="capitalize">{color?.name}</p>
                 </div>}
-                {habitat.name && <div>
+                {habitat?.name && <div>
                     <h2 className="text-lg my-2 font-medium">Habitat</h2>
-                    <p className="capitalize">{habitat.name}</p>
+                    <p className="capitalize">{habitat?.name}</p>
                 </div>}
             </div>
             <div className="flex justify-between mt-8">
