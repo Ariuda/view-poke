@@ -54,7 +54,7 @@ async function EvolutionData({ url, name }: EvolutionDetailsProps) {
             const img = data.sprites?.other?.['official-artwork']?.front_default || fallbackImg;
             return <div key={data.id}>
                 <div className="text-center">
-                    <Image src={img} alt={`${data.name && data.name} image`} width={150} height={150} priority />
+                    <Image src={img} alt={`${data.name && data.name} image`} width={150} height={150} style={{objectFit: "contain"}} priority />
                     <p className="text-sm mt-4">{e.index < currPokemonIndex ? 'Evolves from' : 'Evolves to'}</p>
                     {data.name && <p className="text-lg capitalize">{data.name}</p>}
                     {data.name && <Link className="underline mt-8" href={`/${data.name}`}>See more</Link>}

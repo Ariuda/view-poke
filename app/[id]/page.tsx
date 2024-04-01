@@ -45,7 +45,7 @@ export default async function ViewPokemonById({ params }: ViewPokemonByIdProps) 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 sm:gap-16">
                 <div className="w-full">
                     <div className="relative flex justify-center sm:mb-8">
-                        <Image src={img} alt={`${name && name} image`} style={{width: "auto"}} height={384} width={384} priority />
+                        <Image src={img} alt={`${name && name} image`} style={{objectFit: "contain"}} height={384} width={384} priority />
                     </div>
                     <div className="flex flex-col justify-between">
                         <div className="flex justify-between">
