@@ -14,7 +14,7 @@ export default function CardsLoadingSkeleton({ cardsNumber }: CardsLoadingSkelet
         });
 
     return (
-        <ul className="grid grid-cols-1 gap-3 md:grid-cols-3 sm:grid-cols-2 animate-pulse">
+        <ul className="grid px-7 sm:p-0 grid-cols-1 gap-3 md:grid-cols-3 sm:grid-cols-2 animate-pulse">
             {cardsSekeleton}
         </ul>
     )

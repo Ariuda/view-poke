@@ -21,6 +21,5 @@ export default function CardResultsList({ cards }: CardResultsListProps) {
                 })}
             </ul>
         </>
-        
     )
 }

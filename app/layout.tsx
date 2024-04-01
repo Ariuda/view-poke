@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import '@radix-ui/themes/styles.css';
@@ -26,7 +25,7 @@ export default function RootLayout({
           <Suspense>
             <GoBack />
           </Suspense>
-          <main className="container mx-auto my-5 sm:mt-16 px-5 sm:px-12">
+          <main className="container mx-auto my-5 pb-12 sm:mt-16 px-5 sm:px-12">
             {children}
           </main>  
         </Theme>
