@@ -32,7 +32,7 @@ async function Pokemon({ start, maxItemsPerPage }: PokemonProps) {
 }
 
 export default function Home({ searchParams }: HomeProps) { 
-  let page = 1;
+  let page;
   let maxItemsPerPage = 9;
 
   !searchParams?.page ? page = 1 : page = +searchParams.page;
